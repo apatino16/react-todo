@@ -11,9 +11,7 @@ function TodoList() {
   return (
     <ul>
       {todoList.map(function (item) {
-        return; // Inside the map() method, use the TodoListItem component
-        // Pass key as a prop equal to the id of the todo object
-        // Pass todo as a prop
+        return <TodoListItem key={item.id} todo={item} />;
       })}
     </ul>
   );
