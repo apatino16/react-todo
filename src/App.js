@@ -3,6 +3,8 @@ import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 
 function App() {
+  const [todolist, setTodoList] = React.useState([]);
+
   const [newTodo, setNewTodo] = React.useState("");
   return (
     <div>
@@ -13,7 +15,5 @@ function App() {
     </div>
   );
 }
-
-const [todolist, setTodoList] = React.useState([]);
 
 export default App;
