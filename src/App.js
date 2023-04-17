@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 
@@ -8,6 +8,11 @@ function App() {
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
   };
+
+  useEffect(() => {
+    localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+  }, [todoList]);
+
   return (
     <div>
       <h1 style={{ textAlign: "center" }}> Todo List </h1>
