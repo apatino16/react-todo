@@ -14,7 +14,7 @@ const useSemiPersistentState = () => {
   return [todoList, setTodoList];
 };
 
-function App() {
+const App = () => {
   const [todoList, setTodoList] = useSemiPersistentState();
 
   const addTodo = (newTodo) => {
@@ -28,6 +28,6 @@ function App() {
       <TodoList todoList={todoList} />
     </>
   );
-}
+};
 
 export default App;
