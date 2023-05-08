@@ -1,6 +1,7 @@
 import React from "react";
+import AddTodoForm from "./AddTodoForm";
 
-const InputWithLabel = (props) => {
+const InputWithLabel = ({ children }) => {
   return (
     <>
       <label htmlFor="todoTitle">Title</label>
@@ -8,10 +9,11 @@ const InputWithLabel = (props) => {
         type="text"
         id="todoTitle"
         name="title"
-        value={props.todoTitle}
-        onChange={props.handleTitleChange}
+        value={children.todoTitle}
+        onChange={children.handleTitleChange}
       ></input>
     </>
   );
 };
+
 export default InputWithLabel;
