@@ -22,8 +22,8 @@ const AddTodoForm = ({ onAddTodo }) => {
 
   return (
     <form onSubmit={handleAddTodo}>
+      <InputWithLabel isFocused> Title: </InputWithLabel>
       <button type="submit">Add</button>
-      <InputWithLabel> Title </InputWithLabel>;
     </form>
   );
 };
