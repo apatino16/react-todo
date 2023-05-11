@@ -11,7 +11,6 @@ const AddTodoForm = ({ onAddTodo }) => {
 
   const handleAddTodo = (event) => {
     event.preventDefault();
-    const todoTitle = event.target.title.value;
     const newTodo = {
       title: todoTitle,
       id: Date.now(),
@@ -22,7 +21,12 @@ const AddTodoForm = ({ onAddTodo }) => {
 
   return (
     <form onSubmit={handleAddTodo}>
-      <InputWithLabel isFocused> Title: </InputWithLabel>
+      <InputWithLabel
+        todoTitle={todoTitle}
+        handleTitleChange={handleTitleChange}
+      >
+        <strong>Title:</strong>
+      </InputWithLabel>
       <button type="submit">Add</button>
     </form>
   );
