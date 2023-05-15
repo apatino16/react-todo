@@ -7,6 +7,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     new Promise((resolve, reject) =>
       setTimeout(
         () =>
@@ -24,9 +25,9 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (!isLoading)
-      localStorage.setItem("savedTodoLis", JSON.stringify(todoList));
-  }, [todoList]);
+    if (isLoading === false)
+      localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+  }, [isLoading, todoList]);
 
   const removeTodo = (id) => {
     const newArray = todoList.filter((todo) => todo.id !== id);
