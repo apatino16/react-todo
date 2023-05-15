@@ -3,13 +3,23 @@ import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 
 const App = () => {
-  const [todoList, setTodoList] = useState(
-    [] || JSON.parse(localStorage.getItem("savedTodoList"))
-  );
+  const [todoList, setTodoList] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem("savedTodoList", JSON.stringify(todoList));
-  }, [todoList]);
+    new Promise((resolve, reject) =>
+      setTimeout(
+        () =>
+          resolve({
+            data: {
+              todoList: JSON.parse(localStorage.getItem("savedTodoList")),
+            },
+          }),
+        2000
+      )
+    ).then((result) => {
+      setTodoList(result.data.todoList);
+    });
+  }, []);
 
   const removeTodo = (id) => {
     const newArray = todoList.filter((todo) => todo.id !== id);
