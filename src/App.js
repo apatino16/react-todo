@@ -2,20 +2,32 @@ import React, { useState, useEffect } from "react";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 
-const useSemiPersistentState = () => {
-  const [todoList, setTodoList] = useState(
-    JSON.parse(localStorage.getItem("savedTodoList"))
-  );
+const App = () => {
+  const [todoList, setTodoList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    localStorage.setItem("savedTodoList", JSON.stringify(todoList));
-  }, [todoList]);
+    setIsLoading(true);
+    new Promise((resolve, reject) =>
+      setTimeout(
+        () =>
+          resolve({
+            data: {
+              todoList: JSON.parse(localStorage.getItem("savedTodoList")) || [],
+            },
+          }),
+        2000
+      )
+    ).then((result) => {
+      setTodoList(result.data.todoList);
+      setIsLoading(false);
+    });
+  }, []);
 
-  return [todoList, setTodoList];
-};
-
-const App = () => {
-  const [todoList, setTodoList] = useSemiPersistentState();
+  useEffect(() => {
+    if (isLoading === false)
+      localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+  }, [isLoading, todoList]);
 
   const removeTodo = (id) => {
     const newArray = todoList.filter((todo) => todo.id !== id);
@@ -31,7 +43,12 @@ const App = () => {
     <>
       <h1 style={{ textAlign: "center" }}> Todo List </h1>
       <AddTodoForm onAddTodo={addTodo} />
-      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      )}
     </>
   );
 };
