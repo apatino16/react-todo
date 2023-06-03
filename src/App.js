@@ -36,11 +36,26 @@ const App = () => {
   useEffect(() => {
     fetchData();
   }, []);
+  const removeTodo = async (id) => {
+    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`;
+    const options = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+        "Content-type": "application/json",
+      },
+    };
 
-  const removeTodo = (id) => {
-    const newArray = todoList.filter((todo) => todo.id !== id);
-
-    setTodoList(newArray);
+    try {
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const newTodoList = todoList.filter((todo) => todo.id !== id);
+      setTodoList(newTodoList);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const addTodo = async (title) => {
