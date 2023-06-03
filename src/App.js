@@ -14,31 +14,26 @@ const App = () => {
         Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
       },
     };
-  };
-  try {
-    const response = await fetch(url, options);
 
-    if (!response.ok){
-      throw new Error(`Error: ${response.status}`);
+    try {
+      const response = await fetch(url, options);
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const data = await response.json();
+      const todos = data.records.map((todo) => {
+        return { id: todo.id, title: todo.fields.title };
+      });
+      setTodoList(todos);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error.message);
     }
-  }
+  };
 
   useEffect(() => {
-    setIsLoading(true);
-    new Promise((resolve, reject) =>
-      setTimeout(
-        () =>
-          resolve({
-            data: {
-              todoList: JSON.parse(localStorage.getItem("savedTodoList")) || [],
-            },
-          }),
-        2000
-      )
-    ).then((result) => {
-      setTodoList(result.data.todoList);
-      setIsLoading(false);
-    });
+    fetchData();
   }, []);
 
   useEffect(() => {
