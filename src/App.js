@@ -92,7 +92,7 @@ const App = () => {
   };
 
   return (
-    <>
+    <BrowserRouter>
       <h1 style={{ textAlign: "center" }}> Todo List </h1>
       <AddTodoForm onAddTodo={addTodo} />
 
@@ -101,7 +101,7 @@ const App = () => {
       ) : (
         <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
       )}
-    </>
+    </BrowserRouter>
   );
 };
 
