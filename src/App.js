@@ -33,8 +33,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []); // eslint-disable-next-line
+    fetchData(); // eslint-disable-next-line
+  }, []);
 
   const removeTodo = async (id) => {
     const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`;
