@@ -37,28 +37,6 @@ const App = () => {
     fetchData(); // eslint-disable-next-line
   }, []);
 
-  const removeTodo = async (id) => {
-    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`;
-    const options = {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
-        "Content-type": "application/json",
-      },
-    };
-
-    try {
-      const response = await fetch(url, options);
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-      }
-      const newTodoList = todoList.filter((todo) => todo.id !== id);
-      setTodoList(newTodoList);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
   const addTodo = async ({ title, id }) => {
     const newTitle = {
       fields: {
@@ -66,7 +44,7 @@ const App = () => {
         id: id,
       },
     };
-    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+
     const options = {
       method: "POST",
       headers: {
@@ -84,10 +62,33 @@ const App = () => {
 
       const todo = await response.json();
       const newTodo = {
-        title: todo.fields.title,
         id: todo.id,
+        title: todo.fields.title,
       };
+
       setTodoList([...todoList, newTodo]);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const removeTodo = async (id) => {
+    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`;
+    const options = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+        "Content-type": "application/json",
+      },
+    };
+
+    try {
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const newTodoList = todoList.filter((todo) => todo.id !== id);
+      setTodoList(newTodoList);
     } catch (error) {
       console.log(error.message);
     }
