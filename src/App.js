@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styles from "./App.module.css";
 
 const App = () => {
   const [todoList, setTodoList] = useState([]);
@@ -33,8 +34,43 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData(); // eslint-disable-next-line
   }, []);
+
+  const addTodo = async ({ title, id }) => {
+    const newTitle = {
+      fields: {
+        title: title,
+        id: id,
+      },
+    };
+
+    const options = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(newTitle),
+    };
+
+    try {
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+
+      const todo = await response.json();
+      const newTodo = {
+        id: todo.id,
+        title: todo.fields.title,
+      };
+
+      setTodoList([...todoList, newTodo]);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   const removeTodo = async (id) => {
     const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`;
@@ -53,40 +89,6 @@ const App = () => {
       }
       const newTodoList = todoList.filter((todo) => todo.id !== id);
       setTodoList(newTodoList);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  const addTodo = async ({ title, id }) => {
-    const newTitle = {
-      fields: {
-        title: title,
-        id: id,
-      },
-    };
-    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
-    const options = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(newTitle),
-    };
-
-    try {
-      const response = await fetch(url, options);
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-      }
-
-      const todo = await response.json();
-      const newTodo = {
-        title: todo.fields.title,
-        id: todo.id,
-      };
-      setTodoList([...todoList, newTodo]);
     } catch (error) {
       console.log(error.message);
     }
