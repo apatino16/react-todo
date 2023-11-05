@@ -6,14 +6,13 @@
 html {
     height: 100%;
     width: 100%;    
-
     font-family: 'Nunito', sans-serif;
-
     background-image: url("../img/Background.JPG");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -24,23 +23,82 @@ body {
     max-width: 500px;
     padding: 1.875rem;
     border-radius: 0.625rem;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: auto;
-    margin-right: auto;
- 
+    margin: auto;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Header styles */
 h1 {
     font-size: 3em;
     color: rgba(24, 173, 32, 0.938);
     font-weight: 900;
+    margin-bottom: 20px;
 }
 
+/* Button styles */
 button {
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+}
+
+
+/* AddTodoForm specific styles */
+.AddTodoForm {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.AddTodoForm input {
+    padding: 10px;
+    margin-right: 10px;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* TodoList specific styles */
+.TodoList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.TodoList li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+}
+
+.TodoList button {
+    padding: 8px 16px;
+    border-radius: 5px;
+    background-color: #ff0000;
+    color: #fff;
+    font-size: 14px;
     cursor: pointer;
 }
 
-@media screen {
-    
+/* Media query */
+@media screen and (max-width: 768px) {
+    body {
+        max-width: 90%;
+        padding: 1.25rem;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
 }

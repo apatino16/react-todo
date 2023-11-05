@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import InputWithLabel from "./InputWithLabel";
+import styles from "./AddTodoForm.module.css";
 
 // Create the AddTodoForm component
 const AddTodoForm = ({ onAddTodo }) => {
@@ -30,13 +31,16 @@ const AddTodoForm = ({ onAddTodo }) => {
 
   // Render the form with an input and button
   return (
-    <form onSubmit={handleAddTodo}>
+    <form onSubmit={handleAddTodo} className={styles.AddTodoForm}>
       <InputWithLabel
         value={todoTitle}
         handleTitleChange={handleTitleChange}
-        label="Title"
+        className={styles.Input}
+        placeholder="Enter todo..."
       />
-      <button type="submit">Add</button>
+      <button type="submit" className={styles.Button}>
+        Add
+      </button>
     </form>
   );
 };
