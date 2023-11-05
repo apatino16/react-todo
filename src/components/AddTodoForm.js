@@ -1,7 +1,7 @@
 // Import necessary modules
 import React, { useState } from "react";
-import InputWithLabel from "./InputWithLabel";
 import PropTypes from "prop-types";
+import InputWithLabel from "./InputWithLabel";
 
 // Create the AddTodoForm component
 const AddTodoForm = ({ onAddTodo }) => {
@@ -10,8 +10,7 @@ const AddTodoForm = ({ onAddTodo }) => {
 
   // Function to handle changes in the todo title input
   const handleTitleChange = (event) => {
-    const newTodoTitle = event.target.value;
-    setTodoTitle(newTodoTitle);
+    setTodoTitle(event.target.value);
   };
 
   // Function to handle adding a new todo
@@ -20,8 +19,9 @@ const AddTodoForm = ({ onAddTodo }) => {
     // Create a new todo object with a title and unique id
     const newTodo = {
       title: todoTitle,
-      id: Date.now(),
+      id: Date.now().toString(), // Ensure the ID is a string for consistency
     };
+
     // Call the onAddTodo function passed as a prop, passing the new todo
     onAddTodo(newTodo);
     // Clear the todo title after adding
@@ -32,11 +32,10 @@ const AddTodoForm = ({ onAddTodo }) => {
   return (
     <form onSubmit={handleAddTodo}>
       <InputWithLabel
-        todoTitle={todoTitle}
+        value={todoTitle}
         handleTitleChange={handleTitleChange}
-      >
-        <strong>Title:</strong>
-      </InputWithLabel>
+        label="Title"
+      />
       <button type="submit">Add</button>
     </form>
   );
@@ -44,7 +43,7 @@ const AddTodoForm = ({ onAddTodo }) => {
 
 // Define prop types for the AddTodo Form component
 AddTodoForm.propTypes = {
-  onAddTodo: PropTypes.func, // Define onAddTodo prop as a function
+  onAddTodo: PropTypes.func.isRequired, // Define onAddTodo prop as a function
 };
 
 export default AddTodoForm;
