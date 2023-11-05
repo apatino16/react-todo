@@ -1,12 +1,28 @@
-
-
+/* TodoListItem.module.css */
 .ListItem {
-    color: black;
-    font-size: large;
+    list-style-type: none;
+    margin: 5px 0;
     padding: 10px;
-    margin: 10px;
-}
-
-.RemoveButton {
- 
-}
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .RemoveButton {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .RemoveButton:hover {
+    background-color: #d32f2f;
+  }
+  
