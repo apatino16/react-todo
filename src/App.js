@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import styles from "./App.module.css";
 
 const App = () => {
@@ -96,25 +96,36 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <>
-              <h1 style={{ textAlign: "center" }}> Todo List </h1>
-              <AddTodoForm onAddTodo={addTodo} />
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">HOME</Link>
+              <Link to="/new">NEW TODO</Link>
+            </li>
+          </ul>
+        </nav>
 
-              {isLoading ? (
-                <p>Loading...</p>
-              ) : (
-                <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-              )}
-            </>
-          }
-        ></Route>
-        <Route exact path="/new" element={<h1>New Todo List</h1>}></Route>
-      </Routes>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <>
+                <h1 style={{ textAlign: "center" }}> Todo List </h1>
+                <AddTodoForm onAddTodo={addTodo} />
+
+                {isLoading ? (
+                  <p>Loading...</p>
+                ) : (
+                  <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+                )}
+              </>
+            }
+          ></Route>
+          <Route exact path="/new" element={<h1>New Todo List</h1>}></Route>
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 };
