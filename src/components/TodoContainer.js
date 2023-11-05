@@ -107,9 +107,7 @@ const TodoContainer = ({ tableName, baseName, apiKey }) => {
   };
 
   return (
-    <div className={style.typewritter}>
-      <h1>{tableName}</h1>
-
+    <div className={style.typewrier}>
       <div className={styles.AddTodoForm}>
         <AddTodoForm onAddTodo={addTodo} />
 
@@ -136,8 +134,6 @@ TodoContainer.propTypes = {
   tableName: PropTypes.string.isRequired,
   baseName: PropTypes.string.isRequired,
   apiKey: PropTypes.string.isRequired,
-  addTodo: PropTypes.func.isRequired,
-  removeTodo: PropTypes.func.isRequired,
 };
 
 export default TodoContainer;

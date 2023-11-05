@@ -28,9 +28,9 @@ const InputWithLabel = ({ todoTitle, handleTitleChange, children }) => {
 
 // Define prop types for the component
 InputWithLabel.propTypes = {
-  todoTitle: PropTypes.string.isRequired,
+  todoTitle: PropTypes.string,
   handleTitleChange: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 export default InputWithLabel;
