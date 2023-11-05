@@ -1,31 +1,21 @@
 /* TodoContainer.module.css */
-
-.TodoContainer {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f5f5f5;
-  }
+.AddTodoForm {
+  margin-bottom: 20px;
+}
   
-  .AddTodoForm {
-    margin-bottom: 20px;
-  }
+.sortButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
   
-  .sortButton {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .sortButton:hover {
-    background-color: #388e3c;
-  }
+.sortButton:hover {
+  background-color: #388e3c;
+}

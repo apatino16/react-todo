@@ -1,31 +1,20 @@
 /* TodoList.module.css */
 .List {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .ListItem {
-    margin-bottom: 8px;
-    padding: 12px;
-    border: 1px solid #ccc;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .RemoveButton {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .RemoveButton:hover {
-    background-color: #d32f2f;
-  }
+  list-style: none;
+  padding: 0;
+}
+
+.ListItem {
+  margin-bottom: 8px;
+  padding: 12px;
+  border: 1px solid #ccc;
+}
+
+.RemoveButton {
+  color: white;
+  cursor: pointer;
+}
+
+.RemoveButton:hover {
+  background-color: #d32f2f;
+}

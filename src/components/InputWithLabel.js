@@ -20,6 +20,7 @@ const InputWithLabel = ({ todoTitle, handleTitleChange, children }) => {
         value={todoTitle}
         onChange={handleTitleChange}
         className={styles.Input}
+        placeholder="Enter todo..."
       ></input>
     </div>
   );

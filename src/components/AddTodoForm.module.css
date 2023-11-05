@@ -1,10 +1,10 @@
 /* AddTodoForm.module.css */
 
 .AddTodoForm {
-    margin-bottom: 20px;
-  }
+  margin-bottom: 20px;
+}
   
-  input {
+  /* input {
     padding: 8px;
     margin-right: 10px;
     width: 70%;
@@ -12,7 +12,7 @@
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 16px;
-  }
+  } 
   
   button {
     padding: 8px 16px;
@@ -23,3 +23,4 @@
     font-size: 16px;
     cursor: pointer;
   }
+  */

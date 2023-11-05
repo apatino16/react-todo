@@ -1,30 +1,25 @@
-
 /* Nunito Font */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,700;0,900;1,200&display=swap');
 
-
+/* Global styles */
 html {
     height: 100%;
     width: 100%;    
     font-family: 'Nunito', sans-serif;
     background-image: url("../img/Background.JPG");
     background-repeat: no-repeat;
-    background-position: center;
     background-size: cover;
     margin: 0;
-    padding: 0;
+    padding: 40px;
 }
 
 body {
     background: rgba(255, 255, 0, 0.918);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     max-width: 500px;
     padding: 1.875rem;
     border-radius: 0.625rem;
     margin: auto;
-    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
+    
 }
 
 /* Header styles */
@@ -33,7 +28,35 @@ h1 {
     color: rgba(24, 173, 32, 0.938);
     font-weight: 900;
     margin-bottom: 20px;
+    text-align: center; 
 }
+
+/* Navigation bar styles */
+.navigation {
+    display: flex;
+    justify-content:center;
+    width: 60%;
+    padding: 0;
+    margin-top: 20px;
+}
+
+/* Styling the navigation links */
+.navigation li {
+    margin-right: 20px;
+    display: inline;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+/* Styling the active link */
+.navigation a.active {
+    color: #007bff; /* Change to the desired color for the active link */
+    border-bottom: 2px solid #007bff; /* Example of underlining the active link */
+  }
 
 /* Button styles */
 button {
@@ -46,51 +69,33 @@ button {
     font-size: 16px;
 }
 
+/* Typewriter layout */
+.typewriter {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    max-width: 600px;}
 
-/* AddTodoForm specific styles */
-.AddTodoForm {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+
+.typewriter h1 {
+    font-size: 2em;
+    color: #333; 
 }
-
-.AddTodoForm input {
+      
+.typewriter input[type="text"] {
+    display: block;
+    width: 100%;
     padding: 10px;
-    margin-right: 10px;
-    width: 70%;
+    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 16px;
+    
 }
-
-/* TodoList specific styles */
-.TodoList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.TodoList li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
-}
-
-.TodoList button {
-    padding: 8px 16px;
-    border-radius: 5px;
-    background-color: #ff0000;
-    color: #fff;
-    font-size: 14px;
-    cursor: pointer;
-}
-
+    
 /* Media query */
 @media screen and (max-width: 768px) {
     body {

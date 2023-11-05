@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import InputWithLabel from "./InputWithLabel";
 import styles from "./AddTodoForm.module.css";
+import style from "../App.module.css";
 
 // Create the AddTodoForm component
 const AddTodoForm = ({ onAddTodo }) => {
@@ -35,8 +36,7 @@ const AddTodoForm = ({ onAddTodo }) => {
       <InputWithLabel
         value={todoTitle}
         handleTitleChange={handleTitleChange}
-        className={styles.Input}
-        placeholder="Enter todo..."
+        className={style.typewriter}
       />
       <button type="submit" className={styles.Button}>
         Add

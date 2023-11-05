@@ -3,6 +3,7 @@ import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 import PropTypes from "prop-types";
 import styles from "./TodoContainer.module.css";
+import style from "../App.module.css";
 
 const TodoContainer = ({ tableName, baseName, apiKey }) => {
   const [todoList, setTodoList] = useState([]);
@@ -106,7 +107,7 @@ const TodoContainer = ({ tableName, baseName, apiKey }) => {
   };
 
   return (
-    <div className={styles.TodoContainer}>
+    <div className={style.typewritter}>
       <h1>{tableName}</h1>
 
       <div className={styles.AddTodoForm}>
