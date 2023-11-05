@@ -12,7 +12,7 @@ const TodoList = ({ todoList, onRemoveTodo }) => (
 
 // Define prop types for the component
 TodoList.propTypes = {
-  todoList: PropTypes.func, // Define  as a function
+  todoList: PropTypes.arrayOf(PropTypes.object), // Define  as a function
   onRemoveTodo: PropTypes.func,
 };
 
