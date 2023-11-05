@@ -4,7 +4,7 @@ import AddTodoForm from "./AddTodoForm";
 import PropTypes from "prop-types";
 import styles from "./TodoContainer.module.css";
 
-const TodoContainer = ({ tableName, baseName, apikey }) => {
+const TodoContainer = ({ tableName, baseName, apiKey }) => {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [sortDirection, setSortDirection] = useState("asc"); // Default is ascending order
@@ -17,7 +17,7 @@ const TodoContainer = ({ tableName, baseName, apikey }) => {
       const response = await fetch(urlWithQueryParam, {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${apikey}`,
+          Authorization: `Bearer ${apiKey}`,
         },
       });
 
@@ -52,7 +52,7 @@ const TodoContainer = ({ tableName, baseName, apikey }) => {
     const options = {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${apikey}`,
+        Authorization: `Bearer ${apiKey}`,
         "Content-type": "application/json",
       },
       body: JSON.stringify(newTitle),
@@ -84,7 +84,7 @@ const TodoContainer = ({ tableName, baseName, apikey }) => {
     const options = {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${apikey}`,
+        Authorization: `Bearer ${apiKey}`,
         "Content-type": "application/json",
       },
     };
@@ -134,9 +134,9 @@ const TodoContainer = ({ tableName, baseName, apikey }) => {
 TodoContainer.propTypes = {
   tableName: PropTypes.string.isRequired,
   baseName: PropTypes.string.isRequired,
-  apikey: PropTypes.string.isRequired,
-  addTodo: PropTypes.func,
-  removeTodo: PropTypes.func,
+  apiKey: PropTypes.string.isRequired,
+  addTodo: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired,
 };
 
 export default TodoContainer;
