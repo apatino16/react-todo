@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const TodoListItem = ({ todo, onRemoveTodo }) => {
   return (
-    <li className={styles.ListItem}>
+    <div className={styles.ListItem}>
       {todo.title}
       <button
         type="button"
@@ -13,7 +13,7 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
       >
         Remove
       </button>
-    </li>
+    </div>
   );
 };
 
