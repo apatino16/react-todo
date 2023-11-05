@@ -8,11 +8,11 @@ const TodoContainer = ({ tableName, baseName, apikey }) => {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [sortDirection, setSortDirection] = useState("asc"); // Default is ascending order
-  const url = `https://api.airtable.com/v0/${baseName}/${tableName}`;
 
   const fetchData = async () => {
     const queryParam = `sort[0][field]=title&sort[0][direction]=${sortDirection}`; // Adjust the field for sorting
-    const urlWithQueryParam = `${url}?${queryParam}`;
+    const urlWithQueryParam = `https://api.airtable.com/v0/${baseName}/${tableName}?${queryParam}`;
+
     try {
       const response = await fetch(urlWithQueryParam, {
         method: "GET",
@@ -52,14 +52,17 @@ const TodoContainer = ({ tableName, baseName, apikey }) => {
     const options = {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+        Authorization: `Bearer ${apikey}`,
         "Content-type": "application/json",
       },
       body: JSON.stringify(newTitle),
     };
 
     try {
-      const response = await fetch(url, options);
+      const response = await fetch(
+        `https://api.airtable.com/v0/${baseName}/${tableName}`,
+        options
+      );
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
@@ -77,17 +80,17 @@ const TodoContainer = ({ tableName, baseName, apikey }) => {
   };
 
   const removeTodo = async (id) => {
-    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`;
+    const deleteUrl = `https://api.airtable.com/v0/${baseName}/${tableName}/${id}`;
     const options = {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+        Authorization: `Bearer ${apikey}`,
         "Content-type": "application/json",
       },
     };
 
     try {
-      const response = await fetch(url, options);
+      const response = await fetch(deleteUrl, options);
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
@@ -132,6 +135,8 @@ TodoContainer.propTypes = {
   tableName: PropTypes.string.isRequired,
   baseName: PropTypes.string.isRequired,
   apikey: PropTypes.string.isRequired,
+  addTodo: PropTypes.func,
+  removeTodo: PropTypes.func,
 };
 
 export default TodoContainer;
